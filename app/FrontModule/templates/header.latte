@@ -1,0 +1,24 @@
+
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" n:href="Homepage:default" data-ajax="false" class="brand-logo center {$settings->getContentColor()}-text text-darken-2">{$settings->getName()}</a>
+        <ul class="left hide-on-med-and-down">
+            <li><a href="#searchModal" data-ajax="false" class="modal-trigger"><i class="material-icons">search</i></a> </li>
+            <li n:foreach="$blogs AS $headerBlog"><a n:href="Blog:default $headerBlog->getUrl()" data-ajax="false">{$headerBlog->getName()}</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li n:if="$settings->isMeShowPage()"><a n:href="About:me" data-ajax="false">{$settings->getMeMenuName()}</a></li>
+            <li n:if="$settings->isShowProjects()"><a n:href="About:myProjects" data-ajax="false">Mé projekty</a></li>
+            <li><a n:href="About:contact" data-ajax="false">Kontakty</a></li>
+        </ul>
+        <ul id="nav-mobile" class="side-nav">
+            <li n:foreach="$blogs AS $headerBlog"><a n:href="Blog:default $headerBlog->getUrl()" data-ajax="false">{$headerBlog->getName()}</a></li>
+            <li><div class="divider"></div></li>
+            <li n:if="$settings->isMeShowPage()"><a n:href="About:me" data-ajax="false">{$settings->getMeMenuName()}</a></li>
+            <li n:if="$settings->isShowProjects()"><a n:href="About:myProjects" data-ajax="false">Mé projekty</a></li>
+            <li><a n:href="About:contact" data-ajax="false">Kontakty</a></li>
+        </ul>
+        <a href="#searchModal" data-ajax="false" class="modal-trigger search-btn search-btn-click hide-on-large-only right"><i class="material-icons">search</i></a>
+        <a href="#" data-activates="nav-mobile" data-ajax="false" class="search-btn button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>

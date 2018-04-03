@@ -1,0 +1,105 @@
+<h4>Nastavení možností blogů</h4>
+{control settingsGrid}
+<h4>Nastavní zobrazní sociálních sítí</h4>
+{control socialsGrid}
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <div class="container-fluid">
+            <h4>Základní nastavení webu</h4>
+            {form defaultSettingsForm}
+                <div class="form-group">
+                    <label n:label="name">Název webu</label>
+                    <input class="form-control" n:name="name" placeholder="Název webu">
+                </div>
+                <div class="form-group">
+                    <label n:label="title1">Slogan 1</label>
+                    <input class="form-control" n:name="title1" placeholder="Slogan 1">
+                </div>
+                <div class="form-group">
+                    <label n:label="title2">Slogan 2</label>
+                    <input class="form-control" n:name="title2" placeholder="Slogan 2">
+                </div>
+                <div class="form-group">
+                    <label n:label="color">Barva webu:</label>
+                    <select class="form-control" n:name="color">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label n:label="footerText">Text v patičce</label>
+                    <input class="form-control" n:name="footerText" placeholder="Text v patičce">
+                </div>
+                <div class="form-group">
+                    <label n:label="ctaName">Vlastní CTA - Název</label>
+                    <input class="form-control" n:name="ctaName" placeholder="Zadej název">
+                </div>
+                <div class="form-group">
+                    <label n:label="ctaHref">Vlastní CTA - URL</label>
+                    <input class="form-control" n:name="ctaHref" placeholder="Zadej URL">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input n:name="ctaOwn"> Zobrazit vlastní Call To Action
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">Úvodní fotografie</label>
+                    <input n:name="image" accept=".jpg,.jpeg,.png" onchange="validateFileType()">
+                    <img n:if="!empty($settings->getImage())" src="{$basePath}/{$settings->getImage()->getMiniNameWithPath()}" alt="Homepage image" class="img-rounded img-responsive">
+                </div>
+                <button n:name="create" type="submit" class="btn btn-default">Uložit</button>
+            {/form}
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div class="container-fluid">
+            <h4>Názvy účtů sociálních sítí</h4>
+            {form socialsForm}
+                <div class="form-group">
+                    <label n:label="fbAppId">Facebook nastavení</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">v. 2.11</div>
+                        <input class="form-control" n:name="fbAppId" placeholder="App Id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label n:label="facebook">Facebook</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">@</div>
+                        <input class="form-control" n:name="facebook" placeholder="facebook">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label n:label="twitter">Twitter</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">@</div>
+                        <input class="form-control" n:name="twitter" placeholder="twitter">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label n:label="instagram">Instagram</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">@</div>
+                        <input class="form-control" n:name="instagram" placeholder="instagram">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label n:label="linkedIn">LinkedIn</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">@</div>
+                        <input class="form-control" n:name="linkedIn" placeholder="linkedin">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label n:label="github">GitHub</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">@</div>
+                        <input class="form-control" n:name="github" placeholder="github">
+                    </div>
+                </div>
+                <button n:name="create" type="submit" class="btn btn-default">Uložit</button>
+            {/form}
+        </div>
+    </div>
+</div>
+<br><hr>
+<br>

@@ -1,0 +1,38 @@
+{block content}
+
+<div class="row" id="startPosts">
+    <div n:snippet="posts" class="col s12flex">
+        {if empty($posts)}
+            <div class="col s12">
+                <br>
+                <p>Pro hledaný výraz "{$query}" nebyly nalezeny žádné články.</p>
+                <br><br><br><br><br><br><br><br>
+            </div>
+        {else}
+            <div class="col s12">
+                <br>
+                <h5>Hledaný výraz: "{$query}"</h5>
+            </div>
+            <div n:foreach="$posts as $post" class="col s12 m6 l4" style="margin-left: 0 !important;">
+                <div class="card hoverable">
+                    <div class="card-image article-header {if empty($post->getImage())} no-image {/if}">
+                        <img n:if="!empty($post->getImage())" src="{$basePath}/{$post->getImage()->getMiniNameWithPath()}">
+                        <span class="card-title post-title"><a class="white-text" data-ajax="false" n:href="Blog:detail $post->getUrl()">{$post->getName()}</a></span>
+                    </div>
+                    <div class="card-content">
+                        <p>{$post->getDescription()|truncate:150}</p>
+                    </div>
+                    <div class="card-action">
+                        <div class="col s6 center-align">
+                            {$post->getPublicDate()|date:'d.m.Y'}
+                        </div>
+                        <div class="col s6 center-align">
+                            <a class="{$settings->getContentColor()}-text text-darken-2" data-ajax="false" n:href="Blog:detail $post->getUrl()">číst</a>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        {/if}
+    </div>
+</div>

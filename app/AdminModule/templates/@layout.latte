@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{ifset title}{include title|stripHtml} | {/ifset}Admin</title>
+    {include 'head.latte'}
+    {block head}{/block}
+</head>
+
+<body>
+{snippet page}
+    {include 'header.latte'}
+    {snippet content}
+        <div class="container-fluid">
+            {snippet flashes}
+                {foreach $flashes as $flash}
+                    <div class="alert alert-{$flash->type}">
+                        {$flash->message}
+                    </div>
+                {/foreach}
+            {/snippet}
+            {include content}
+        </div>
+    {/snippet}
+{/snippet}
+
+{snippet scripts}
+    {include 'footerScripts.latte'}
+    {include scripts}
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                tabsize: 2,
+                // close prettify Html
+                prettifyHtml: false,
+                toolbar: [
+                    // Add highlight plugin
+                    ['highlight', ['highlight']],
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['insert', ['picture', 'link', 'video', 'table', 'hr','emoji']],
+                    ['mics', ['undo', 'redo','codeview']],
+                ],
+                lang: 'cs-CZ',
+                placeholder: 'Sem napiš článek...',
+                dialogsInBody: true,
+                dialogsFade: true,
+                callbacks: {
+                    onImageUpload: function (image) {
+                        uploadImage(image[0]);
+                    }
+                }
+            });
+
+            function uploadImage(image) {
+                var data = new FormData();
+                data.append("image", image);
+                $.nette.ajax({
+                    url: {link uploadImage!},
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    type: "post",
+                    success: function (payload) {
+                        var image = $('<img>').attr('src', payload.url).attr('class', 'img-responsive responsive-img');
+                        $('.summernote').summernote("insertNode", image[0]);
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            }
+
+        });
+
+
+    </script>
+{/snippet}
+</body>
+</html>

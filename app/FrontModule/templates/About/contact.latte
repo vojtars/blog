@@ -1,0 +1,68 @@
+{block content}
+<div class="row">
+    <div class="container">
+        <div class="col s12 {if $settings->isShowTwitterTimeline() || $settings->isShowAddress() || $settings->isShowMap()} m6 {/if}">
+            <br>
+            <h5 n:block="title">Kontakty</h5>
+            <ul class="collection">
+                <li n:if="!empty($settings->getEmail())" class="collection-item avatar">
+                    <i class="material-icons circle {$settings->getContentColor()} darken-2">email</i>
+                    <span class="title">E-mail</span>
+                    <p class="grey-text"><a class="grey-text" data-ajax="false" href="mailto:{$settings->getEmail()}">{$settings->getEmail()}</a></p>
+                </li>
+                <li n:if="!empty($settings->getPhone())" class="collection-item avatar">
+                    <i class="material-icons circle darken-2 {$settings->getContentColor()}">local_phone</i>
+                    <span class="title">Telefon</span>
+                    <p class="grey-text"><a class="grey-text" data-ajax="false" href="tel:{$settings->getPhone()|phone}">{$settings->getPhone()|phone}</a></p>
+                </li>
+                <li n:if="$settings->isShowTwitter()" class="collection-item avatar">
+                    <i class="fa fa-twitter white-texts circle darken-2 {$settings->getContentColor()}"></i>
+                    <span class="title">Twitter</span>
+                    <p class="grey-text"><a class="grey-text" target="_blank" href="https://twitter.com/{$settings->getTwitter()}">@{$settings->getTwitter()}</a></p>
+                </li>
+                <li n:if="$settings->isShowFacebook()" class="collection-item avatar">
+                    <i class="fa fa-facebook white-texts circle darken-2 {$settings->getContentColor()}"></i>
+                    <span class="title">Facebook</span>
+                    <p class="grey-text"><a class="grey-text" target="_blank" href="https://facebook.com/{$settings->getFacebook()}">@{$settings->getFacebook()}</a></p>
+                </li>
+                <li n:if="$settings->isShowInstagram()" class="collection-item avatar">
+                    <i class="fa fa-instagram white-texts circle darken-2 {$settings->getContentColor()}"></i>
+                    <span class="title">Instagram</span>
+                    <p class="grey-text"><a class="grey-text" target="_blank" href="https://instagram.com/{$settings->getInstagram()}">@{$settings->getInstagram()}</a></p>
+                </li>
+                <li n:if="$settings->isShowLinkedIn()" class="collection-item avatar">
+                    <i class="fa fa-linkedin white-texts circle darken-2 {$settings->getContentColor()}"></i>
+                    <span class="title">LinkedIn</span>
+                    <p class="grey-text"><a class="grey-text" target="_blank" href="https://linkedin.com/{$settings->getLinkedIn()}">@{$settings->getLinkedIn()}</a></p>
+                </li>
+                <li n:if="$settings->isShowGithub()" class="collection-item avatar">
+                    <i class="fa fa-github white-texts circle darken-2 {$settings->getContentColor()}"></i>
+                    <span class="title">Github</span>
+                    <p class="grey-text"><a class="grey-text" target="_blank" href="https://github.com/{$settings->getGithub()}">@{$settings->getGithub()}</a></p>
+                </li>
+
+                <li class="collection-item">
+                    {control contactForm}
+                </li>
+            </ul>
+        </div>
+        <div n:if="$settings->isShowAddress() || $settings->isShowMap()" class="col s12 m6">
+            <br>
+            <h5>Adresa</h5>
+            <ul class="collection">
+                <li class="collection-item avatar" n:if="$settings->isShowAddress() ">
+                    <i class="material-icons circle {$settings->getContentColor()} darken-2">map</i>
+                    <span class="title">{$settings->getStreet()}, {$settings->getZip()} {$settings->getCity()}</span>
+                    <p class="grey-text"><a target="_blank" href="https://www.google.com/maps/@{$settings->getLatitude()},{$settings->getLongitude()},18z?hl=cs-CZ">Mapa</a></p>
+                </li>
+                <li class="collection-item">
+                    <div n:if="$settings->isShowMap()" id="map"></div>
+                </li>
+            </ul>
+        </div>
+        <div n:if="$settings->isShowTwitterTimeline()" class="col s12 m6">
+            <br><br>
+            <a class="twitter-timeline" data-lang="cs" data-height="800" data-theme="light" href="https://twitter.com/{$settings->getTwitter()}">Tweets by {$settings->getTwitter()}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+</div>

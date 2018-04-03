@@ -1,0 +1,133 @@
+{block content}
+<script>
+    window._stack || (window._stack = []);
+    window._stack.push(function (di) {
+        if (typeof FB != 'undefined') {
+            FB.XFBML.parse();
+        }
+    });
+</script>
+<div id="index-banner" class="parallax-container article-header valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container valign">
+            <br><br>
+            <h1 n:block="title" class="header center white-text text-darken-2">{$post->getName()}</h1>
+            <div class="row center">
+                <h5 class="header col s12 light white-text text-darken-2">{$post->getDescription()}</h5>
+                <p class="post-meta"><i style="color: #ffffff"
+                                        class="fa fa-clock-o"></i> {$post->getPublicDate()|timeAgoInWords},
+                    <span class="white-text">{$post->getAddUser()->getFullName()}</span>
+                </p>
+            </div>
+            <div class="row center">
+                <a href="#startPosts"
+                   class="btn-floating btn-large waves-effect waves-light {$settings->getContentColor()} darken-2 head-link"><i
+                            class="fa fa-angle-double-down"></i></a>
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+
+    {if !empty($post->getImage())}
+        {var $image = $post->getImage()}
+    {elseif !empty($post->getCategory()->getImage())}
+        {var $image = $post->getCategory()->getImage()}
+    {elseif !empty($post->getBlog()->getImage())}
+        {var $image = $post->getBlog()->getImage()}
+    {else}
+        {var $image = NULL}
+    {/if}
+
+    <div class="parallax"><img n:if="!empty($image)" src="{$basePath}/{$image->getNameWithPath()}"
+                                                                alt="{$post->getName()}"></div>
+</div>
+
+<div class="container" id="startPosts">
+        <div class="col s12 m10 offset-m1 l9 offset-l1 blog-content">
+            <div class="col s12 breadcrumb-custom">
+                <a class="grey-text" n:href="Homepage:default">{$settings->getName()|firstUpper}</a>
+                <span class="grey-text text-lighten-3"> > </span>
+                <a class="grey-text" n:href="Blog:default $post->getBlog()->getUrl()">{$post->getBlog()->getName()|firstUpper}</a>
+                <span class="grey-text text-lighten-3"> > </span>
+                <a class="grey-text" n:href="Blog:default $post->getBlog()->getUrl(), $post->getCategory()->getUrl()">{$post->getCategory()->getName()|firstUpper}</a>
+                <span class="grey-text text-lighten-3"> > </span>
+                <a class="grey-text" n:href="Blog:detail $post->getUrl()">{$post->getName()|firstUpper}</a>
+            </div>
+            <br>
+            <div class="blog-content-text">
+                {$post->getContent()|noescape}
+            </div>
+            <div n:if="!empty($images)" class="galleria">
+                <a n:foreach="$images AS $image" href="{$image->getUrl()}" data-ajax="false">
+                    <img src="{$basePath}/{$image->getMiniNameWithPath()}" data-big="{$image->getUrl()}"
+                         data-title="{$image->getDescription()}" alt="{$image->getDescription()}">
+                </a>
+                <br><br>
+            </div>
+            <div n:if="count($post->getPostHasFiles()) > 0" class="col s12">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h5>Soubory ke stažení</h5></li>
+                    <li n:foreach="$post->getPostHasFiles() AS $postHasFile" class="collection-item">
+                        <div>
+                            <a href="{$postHasFile->getFile()->getUrl()}" class="black-text" target="_blank">
+                                {if empty($postHasFile->getFile()->getName())}
+                                    {$postHasFile->getFile()->getFileName()}
+                                {else}
+                                    {$postHasFile->getFile()->getName()}
+                                {/if}
+                            </a>
+                            <a href="{$postHasFile->getFile()->getUrl()}" target="_blank" class="secondary-content"><i class="material-icons {$settings->getContentColor()}-text">file_download</i></a>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <hr>
+            <p>Aktualizováno: <b>{$post->getDateEdit()|timeAgoInWords}</b></p>
+        </div>
+</div>
+<div class="container">
+    <a n:if="$settings->isShareTwitter()" href="https://twitter.com/share?ref_src=twsrc%5Etfw" style="margin-top:10px"
+                                          class="twitter-share-button" data-size="large"
+                                          data-via="{$settings->getTwitter()}" data-show-count="false">Tweet</a>
+    <div n:if="$settings->isShareFacebook()" class="fb-share-button" data-href="{$headUrl}" data-layout="button"
+                                             data-size="large" data-mobile-iframe="true"><a
+                class="fb-xfbml-parse-ignore" target="_blank"
+                href="https://www.facebook.com/sharer/sharer.php?u={$headUrl}%2F&amp;src=sdkpreparse">Sdílet</a></div>
+    <a class="waves-effect waves-light btn modal-trigger {$settings->getContentColor()} darken-2 right" href="#modal1" data-ajax="false">Odebírat
+        <i class="material-icons right">mail</i>
+    </a>
+    <br><br><br><br>
+</div>
+<div n:if="$settings->isShowComments()" class="container">
+    <div class="fb-comments" data-href="{$headUrl}" data-width="100%" data-numposts="5"></div>
+</div>
+
+<div n:if="!empty($nextPosts)" class="container">
+    <h4><br>Podobné články</h4>
+    <div class="row">
+        <div n:foreach="$nextPosts as $nextPost" class="col s12 m6">
+            <div class="card hoverable">
+                <div class="card-image {if empty($nextPost->getImage())} no-image {/if}">
+                    <img n:if="!empty($nextPost->getImage())"
+                            src="{$basePath}/{$nextPost->getImage()->getMiniNameWithPath()}">
+                    <span class="card-title post-title"><a
+                                class="white-text" data-ajax="false" n:href="Blog:detail $nextPost->getUrl()">{$nextPost->getName()}</a></span>
+                </div>
+                <div class="card-content">
+                    <p>{$nextPost->getDescription()|truncate:150}</p>
+                </div>
+                <div class="card-action">
+                    <div class="col s6 center-align">
+                        {$nextPost->getPublicDate()|date:'d.m.Y'}
+                    </div>
+                    <div class="col s6 center-align">
+                        <a class="{$settings->getContentColor()}-text text-darken-2" data-ajax="false" n:href="Blog:detail $nextPost->getUrl()">číst</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

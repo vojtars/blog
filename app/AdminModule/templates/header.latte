@@ -1,0 +1,65 @@
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" n:href="Homepage:default">vojtars - admin</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blogy <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li n:foreach="$blogs AS $blog"><a n:href="Post:list $blog->getUrl()">{$blog->getName()}</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a n:href="Blog:detail">Přidat blog</a></li>
+                        <li><a n:href="Blog:default">Správa blogů</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Galerie a Soubory <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a n:href="Gallery:default">Správa fotogalerií</a></li>
+                        <li><a n:href="File:default">Správa souborů</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projekty <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a n:href="Project:detail">Přidat projekt</a></li>
+                        <li><a n:href="Project:default">Správa projektů</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hlavní stránka <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a n:href="Homepage:edit">Přidat blok</a></li>
+                        <li><a n:href="Homepage:list">Správa bloků</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nastavení <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a n:href="Settings:default">Nastavení obsahu</a></li>
+                        <li><a n:href="Settings:aboutMe">Stránka "{$settings->getMeMenuName()}"</a></li>
+                        <li><a n:href="Settings:contacts">Stránka "Kontakty"</a></li>
+                        <li><a n:href="Settings:terms">Stránka "Zpracování osobních údajů"</a></li>
+                        <li><a n:href="Settings:marketing">SEO a Marketing</a></li>
+                        <li><a n:href="Settings:subscribers">Odběratelé</a></li>
+                        <li><a n:href="User:default">Správa uživatelů</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a n:href="signOut!">Odhlásit se</a> </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,50 @@
+{block content}
+<div id="index-banner" class="parallax-container article-header parallax-hp {if empty($settings->getImage())} no-image-hp {/if}">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <h1 n:block="title" class="header center white-text text-lighten-2"><br>{$settings->getTitle1()}</h1>
+            <div class="row center">
+                <h5 class="header col s12 light"><br>{$settings->getTitle2()}</h5>
+            </div>
+            <div class="row center">
+                {if $settings->isCtaOwn()}
+                    <a data-ajax="false" class="btn-large waves-effect waves-light {$settings->getContentColor()} darken-2 blog-hp-btn" href="{$settings->getCtaHref()}">{$settings->getCtaName()}</a>
+                {else}
+                    <a n:foreach="$blogs AS $hpBlog" data-ajax="false" class="btn-large waves-effect waves-light {$settings->getContentColor()} darken-2 blog-hp-btn" n:href="Blog:default $hpBlog->getUrl()">{$hpBlog->getName()}</a>
+                {/if}
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+    <div n:if="!empty($settings->getImage())" class="parallax"><img src="{$basePath}/{$settings->getImage()->getNameWithPath()}" alt="Unsplashed background img 1"></div>
+</div>
+
+<div class="row">
+    <br>
+    <div class="row flex">
+        <div n:foreach="$posts as $post" class="col s12 m6 l4 {if $iterator->last && $iterator->counter >= 3} hide-on-med-only{/if}" style="margin-left: 0 !important;">
+            <div class="card hoverable">
+                <div class="card-image {if empty($post->getImage())} no-image {/if}">
+                    <img n:if="!empty($post->getImage())" src="{$basePath}/{$post->getImage()->getMiniNameWithPath()}">
+                    <span class="card-title post-title"><a class="white-text" data-ajax="false" n:href="Blog:detail $post->getUrl()">{$post->getName()}</a></span>
+                </div>
+                <div class="card-content">
+                    <p>{$post->getDescription()|truncate:150}</p>
+                </div>
+                <div class="card-action">
+                    <div class="col s6 center-align">
+                        {$post->getPublicDate()|date:'d.m.Y'}
+                    </div>
+                    <div class="col s6 center-align">
+                        <a class="{$settings->getContentColor()}-text text-darken-2" data-ajax="false" n:href="Blog:detail $post->getUrl()">číst</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{foreach $blocks AS $block}
+    {$block->getContent()|noescape}
+{/foreach}

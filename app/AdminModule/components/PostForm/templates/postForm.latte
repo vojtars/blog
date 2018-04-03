@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="container-fluid">
+            {form postForm}
+                <div class="form-group">
+                    <label n:label="name">Nadpis</label>
+                    <input class="form-control" n:name="name" placeholder="Nadpis článku">
+                </div>
+                <div class="form-group">
+                    <label n:label="perex">Krátký popis</label>
+                    <textarea class="form-control" n:name="perex" placeholder="Krátky popis"></textarea>
+                </div>
+                <div class="form-group">
+                    <label n:label="category">Kategorie:</label>
+                    <select class="form-control" n:name="category">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label n:label="gallery">Galerie:</label>
+                    <select class="form-control" n:name="gallery">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Soubory:
+                        <small>Vyber více podržením ctrl (cmd)</small>
+                    </label>
+                    <select n:name="files" class="form-control" size="8"></select>
+                </div>
+                <label n:label="publicDate">Datum publikace</label>
+                <div class="input-group datetime-picker">
+                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                    <input n:name="publicDate" class="form-control form-control-sm" data-input>
+                </div><br>
+                <div class="checkbox">
+                    <label>
+                        <input n:name="public"> Publikovat
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label n:label="image">Úvodní fotografie</label>
+                    <input n:name="image" accept=".jpg,.jpeg,.png" onchange="validateFileType()">
+                </div>
+                <div class="form-group">
+                    <label n:label="content">Obsah</label>
+                    <textarea class="form-control summernote" n:name="content" placeholder="Článek"></textarea>
+                </div>
+                <button n:name="create" type="submit" class="btn btn-default">Uložit</button>
+            {/form}
+        </div>
+    </div>
+</div>

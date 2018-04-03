@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {*<meta name="generator" content="Codeply">*}
+    <title n:snippet="title">{ifset title}{include title|stripHtml} | {/ifset}{$settings->getName()}</title>
+    {include 'head.latte'}
+    {$settings->getScriptsHead()|noescape}
+    {block head}{/block}
+</head>
+
+<body class="nittro-transition-auto nittro-transition-bar">
+<div id="fb-root"></div>
+<script n:if="!empty($settings->getFbAppId())">
+    fbIni();
+    {var $fbAppUrl = "https://connect.facebook.net/cs_CZ/sdk.js#xfbml=1&version=v2.11&appId=".$settings->getFbAppId()}
+    function fbIni() {
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = {$fbAppUrl};
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    }
+</script>
+
+{snippet page}
+    {include 'header.latte'}
+    {snippet content}
+        {include content}
+        {if $user->isLoggedIn()}
+            {control adminControl}
+        {/if}
+    {/snippet}
+    {include 'footer.latte'}
+{/snippet}
+{snippet hp-scripts}
+    {include 'footerScripts.latte'}
+    {$settings->getScriptsFooter()|noescape}
+    <script type="application/javascript">
+        window._stack || (window._stack = []);
+        window._stack.push(function (di) {
+            var desktopSearch = $("#search-input-desktop");
+            if( $(desktopSearch).length ) {
+                searchPosts(desktopSearch);
+            }
+
+            var mobileSearch = $("#search-input-mobile");
+            if( $(mobileSearch).length ) {
+                searchPosts(mobileSearch);
+            }
+
+            function searchPosts(searchInput) {
+                var delay = (function () {
+                    var timer = 0;
+                    return function (callback, ms) {
+                        clearTimeout(timer);
+                        timer = setTimeout(callback, ms);
+                    };
+                })();
+
+                searchInput.focus();
+                var tmpStr = searchInput.val();
+                searchInput.val('');
+                searchInput.val(tmpStr);
+                searchInput.keyup(function () {
+                    if (searchInput.val().length >= 3 || searchInput.val().length == 0) {
+                        delay(function () {
+                            di.getService('page').open({link search!}, 'GET', {
+                                searchQuery: encodeURI(searchInput.val())
+                            });
+                        }, 500);
+                    }
+                });
+            }
+        });
+    </script>
+{/snippet}
+{snippet flashes}
+    {foreach $flashes as $flash}
+        {if $flash->type == 'warning'}{var $color = 'amber'}{elseif $flash->type == 'danger'}{var $color = 'red'}{else}{var $color = 'green'}{/if}
+        <script>Materialize.toast({$flash->message}, 4000, {$color})</script>
+    {/foreach}
+{/snippet}
+
+<!-- Modal na vyhledávání -->
+{control searchForm}
+<!-- Modal na odběr -->
+{control subscriberForm}
+
+</body>
+</html>
+

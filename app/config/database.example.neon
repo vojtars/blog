@@ -1,0 +1,12 @@
+# Ukázka souboru config.local.neon
+parameters:
+    database:
+    	dbname: my_blog
+    	host: 127.0.0.1
+    	dsn: 'mysql:host=127.0.0.1;dbname=my_blog'
+    	user: 'root'
+    	password: '12345'
+    	options:
+    		lazy: yes
+
+

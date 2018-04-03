@@ -1,0 +1,55 @@
+<footer class="page-footer {$settings->getContentColor()} darken-4">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <p class="{$settings->getContentColor()}-text text-lighten-4">{$settings->getFooterText()}<br>
+                    {if !empty($settings->getIco())}IČO: {$settings->getIco()} <br>{/if}
+                    {if !empty($settings->getEmail())}E-mail: {$settings->getEmail()} <br>{/if}
+                    {if !empty($settings->getPhone())}Telefon: {$settings->getPhone()|phone} <br>{/if}
+                </p>
+                <a class="white-text" n:href="About:terms">Zpracování osobních údajů</a>
+
+            </div>
+            <div class="col l3 s12">
+                <ul>
+                    <li>
+                    </li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <ul>
+                    <li n:if="!empty($settings->isShowTwitter())">
+                        <a class="white-text" target="_blank" href="https://www.twitter.com/{$settings->getTwitter()}">
+                            <i class="small fa fa-twitter-square white-text"></i> Twitter
+                        </a>
+                    </li>
+                    <li n:if="!empty($settings->isShowFacebook())">
+                        <a class="white-text" target="_blank" href="https://www.facebook.com/{$settings->getFacebook()}">
+                            <i class="small fa fa-facebook-square white-text"></i> Facebook
+                        </a>
+                    </li>
+                    <li n:if="!empty($settings->isShowInstagram())">
+                        <a class="white-text" target="_blank" href="https://www.instagram.com/{$settings->getInstagram()}">
+                            <i class="small fa fa-instagram white-text"></i> Instagram
+                        </a>
+                    </li>
+                    <li n:if="!empty($settings->isShowGithub())">
+                        <a class="white-text" target="_blank" href="https://github.com/{$settings->getGithub()}">
+                            <i class="small fa fa-github-square white-text"></i> Github
+                        </a>
+                    </li>
+                    <li n:if="!empty($settings->isShowLinkedIn())">
+                        <a class="white-text" target="_blank" href="https://www.linkedin.com/in/{$settings->getLinkedIn()}">
+                            <i class="small fa fa-linkedin-square white-text"></i> LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Made by <a class="brown-text text-lighten-3" href="https://vojtars.cz">Vojtars</a>
+        </div>
+    </div>
+</footer>

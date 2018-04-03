@@ -1,0 +1,46 @@
+
+<script>
+    LiveFormOptions = {
+        messageErrorPrefix: 'Chyba: ',
+        wait: 500
+    };
+</script>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+<script src="{$basePath}/js/live-form-validation.js"></script>
+<script src="{$basePath}/js/materialize.min.js"></script>
+<script src="{$basePath}/js/main.js"></script>
+<script src="{$basePath}/js/galleria-1.5.7.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+<script n:if="$settings->isShowMap()">
+    function initMap() {
+        console.log('test');
+        var uluru = { lat: {$settings->getLatitude()}, lng: {$settings->getLongitude()}};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: uluru,
+            width: '100%'
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script n:if="$settings->isShowMap()" async defer
+        src="https://maps.googleapis.com/maps/api/js?key={$settings->getMapsApiKey()}&callback=initMap">
+</script>
+<script n:if="isset($images)">
+    {var $galleriaTheme = $basePath.'/galleria/themes/classic/galleria.classic.min.js'}
+    (function() {
+        Galleria.loadTheme({$galleriaTheme});
+        Galleria.configure({
+            transition: 'fade',
+            swipe: 'enforced'
+        });
+        Galleria.run('.galleria');
+    }());
+    $('.galleria').data('galleria').enterFullscreen();
+</script>

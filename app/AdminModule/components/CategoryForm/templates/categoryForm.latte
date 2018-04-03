@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="container-fluid">
+            {form categoryForm}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Název</label>
+                    <input n:name="name" class="form-control" placeholder="Název blogu">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">URL</label>
+                    <input n:name="url" class="form-control" placeholder="nazev-blogu">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Popis</label>
+                    <textarea n:name="description" class="form-control" placeholder="Krátky popis"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">Úvodní fotografie</label>
+                    <input n:name="image" id="exampleInputFile">
+                </div>
+                <button n:name="create" type="submit" class="btn btn-default">Uložit</button>
+            {/form}
+        </div>
+    </div>
+</div>

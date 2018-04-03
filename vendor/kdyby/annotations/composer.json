@@ -1,0 +1,61 @@
+{
+	"name": "kdyby/annotations",
+	"type": "library",
+	"description": "Doctrine Annotations integration into Nette Framework",
+	"keywords": ["nette", "kdyby", "doctrine", "annotations"],
+	"homepage": "http://kdyby.org",
+	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"authors": [
+		{
+			"name": "Filip Procházka",
+			"homepage": "http://filip-prochazka.com",
+			"email": "filip@prochazka.su"
+		},
+		{
+			"name": "Jáchym Toušek",
+			"homepage": "http://enumag.cz",
+			"email": "enumag@gmail.com"
+		}
+	],
+	"support": {
+		"email": "filip@prochazka.su",
+		"issues": "https://github.com/kdyby/annotations/issues"
+	},
+	"require": {
+		"php": "^7.1",
+		"nette/di": "^2.4@dev",
+		"nette/utils": "^2.4@dev",
+		"doctrine/annotations": "~1.6",
+		"kdyby/doctrine-cache": "^2.6.1@dev"
+	},
+	"require-dev": {
+		"nette/bootstrap": "^2.4.5@dev",
+		"nette/tester": "^2.0"
+	},
+	"minimum-stability": "dev",
+	"conflict": {
+		"nette/caching": "<2.5.0",
+		"nette/finder": "<2.4.1",
+		"nette/neon": "<2.4.2",
+		"nette/utils": "<2.4.5",
+		"kdyby/doctrine": "0.9.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Kdyby\\Annotations\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"KdybyTests\\": "tests/KdybyTests/"
+		},
+		"classmap": [
+			"tests/KdybyTests/"
+		]
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "2.4-dev"
+		}
+	}
+}

@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    {snippet dashboard}
+        {if empty($blogs)}
+            <p>Vítejte v adminu, zde je základní dashboard s přehledem o vašem blogu. Momentálně nemáte žádný aktivní
+                blog.</p>
+            <a href="{plink Blog:detail}" class="btn btn-success">Vytvořit blog</a>
+        {else}
+
+            <div n:foreach="$blogs as $blog" class="row">
+                <h4>
+                    Blog: {$blog->getName()}
+                    <a n:href="changeActiveBlog! $blog->getId()"
+                            class="ajax btn btn-sm {if $blog->isActive()} btn-danger {else} btn-success {/if}">
+                        {if $blog->isActive()} Deaktivovat {else} Aktivovat {/if}
+                    </a>
+                    <a href="{plink Blog:detail $blog->getId()}" class="btn btn-sm btn-success">Upravit blog</a>
+                    <a href="{plink Post:edit $blog->getUrl()}" class="btn btn-sm btn-success">Přidat článek</a>
+                </h4>
+                {var $blogId = $blog->getId()}
+                {control blogGrid-$blogId}
+            </div>
+
+        {/if}
+    {/snippet}
+</div>

@@ -1,0 +1,161 @@
+{block content}
+<div id="index-banner" class="parallax-container valign-wrapper article-header
+	{if (empty($activeCategory) || empty($activeCategory->getImage())) && empty($blog->getImage())}
+		no-blog-image
+	{/if}">
+	<div class="section no-pad-bot">
+		<div class="container valign">
+			<br><br>
+			<h1 n:block="title" class="header center white-text text-darken-2">
+                {if !empty($activeCategory)}
+					{$activeCategory->getName()}
+                {else}
+                    {$blog->getName()}
+                {/if}
+
+			</h1>
+			<div class="row center">
+				<h5 class="header col s12 light white-text text-darken-2">
+                    {if !empty($activeCategory)}
+                        {$activeCategory->getDescription()}
+                    {else}
+                        {$blog->getDescription()}
+                    {/if}
+				</h5>
+				<a class="waves-effect waves-light btn modal-trigger {$settings->getContentColor()} darken-2 blog-hp-btn" href="#modal1" data-ajax="false">Odebírat
+					<i class="material-icons right">mail</i>
+				</a>
+			</div>
+
+			<br><br>
+
+		</div>
+	</div>
+	<div class="parallax">
+		{if !empty($activeCategory)}
+			{if !empty($activeCategory->getImage())}
+				<img src="{$basePath}/{$activeCategory->getImage()->getNameWithPath()}" alt="{$activeCategory->getImage()->getDescription()}">
+			{else}
+				<img n:if="!empty($blog->getImage())" src="{$basePath}/{$blog->getImage()->getNameWithPath()}" alt="{$blog->getImage()->getDescription()}">
+            {/if}
+		{else}
+			<img n:if="!empty($blog->getImage())" src="{$basePath}/{$blog->getImage()->getNameWithPath()}" alt="{$blog->getImage()->getDescription()}">
+		{/if}
+	</div>
+</div>
+
+<div class="row hide-on-med-and-up mobile-filters-m">
+	<ul class="collapsible mobile-filters" data-collapsible="accordion">
+		<li>
+			<div class="collapsible-header">
+				<i class="material-icons">more_vert</i>
+				Filtry a kategorie
+			</div>
+			<div class="collapsible-body">
+				<div class="container">
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="search-input-mobile" type="text" class="validate">
+							<label class="active black-text" for="search-input-mobile">Hledej...</label>
+						</div>
+					</div>
+					<div class="collection {$settings->getContentColor()}-text text-darken-2">
+						{foreach $categories AS $category }
+							{if empty($activeCategory)}
+								<a n:href="default $blog->getUrl(), $category['url']" class="collection-item black-text"><span class="badge">{$category['posts']}</span>{$category['name']}</a>
+                            {elseif $activeCategory->getId() == $category['id']}
+								<p class="collection-item black-text grey lighten-3"><span class="badge">{$category['posts']}</span>{$category['name']}</p>
+							{else}
+								<a n:href="default $blog->getUrl(), $category['url']" class="collection-item black-text"><span class="badge">{$category['posts']}</span>{$category['name']}</a>
+                            {/if}
+						{/foreach}
+					</div>
+				</div>
+				{*<div class="container">*}
+					{*<a href="#">*}
+						{*<div class="chip hoverable">Nette</div>*}
+					{*</a>*}
+					{*<div class="chip">CSS</div>*}
+					{*<div class="chip">Nittro</div>*}
+					{*<div class="chip">Deploy</div>*}
+				{*</div>*}
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div class="row" id="startPosts">
+
+	<div class="col s12 m4 l3 hide-on-small-only left">
+		<div class="container">
+			<div class="row">
+				<br>
+				<div class="input-field col s12">
+					<input id="search-input-desktop" type="text" class="validate">
+					<label class="active black-text" for="search-input-desktop">Hledej...</label>
+				</div>
+			</div>
+			<div class="collection {$settings->getContentColor()}-text text-darken-2">
+                {foreach $categories AS $category }
+                    {if empty($activeCategory)}
+						<a n:href="default $blog->getUrl(), $category['url']" class="collection-item black-text"><span class="badge">{$category['posts']}</span>{$category['name']}</a>
+                    {elseif $activeCategory->getId() == $category['id']}
+						<p class="collection-item black-text grey lighten-3"><span class="badge">{$category['posts']}</span>{$category['name']}</p>
+                    {else}
+						<a n:href="default $blog->getUrl(), $category['url']" class="collection-item black-text"><span class="badge">{$category['posts']}</span>{$category['name']}</a>
+                    {/if}
+                {/foreach}
+			</div>
+		</div>
+		{*<div class="container">*}
+			{*<a href="#">*}
+				{*<div class="chip hoverable">Nette</div>*}
+			{*</a>*}
+			{*<div class="chip">CSS</div>*}
+			{*<div class="chip">Nittro</div>*}
+			{*<div class="chip">Deploy</div>*}
+		{*</div>*}
+	</div>
+
+	<div n:snippet="posts" class="col s12 m8 l9 flex">
+		<div class="col s12 breadcrumb-custom">
+			<a class="grey-text" n:href="Homepage:default">{$settings->getName()|firstUpper}</a> <span class="grey-text text-lighten-3"> > </span>
+			<a class="grey-text" n:href="Blog:default $blog->getUrl()">{$blog->getName()|firstUpper}</a>
+			{if !empty($activeCategory)}
+			<span class="grey-text text-lighten-3"> > </span>
+			<a class="grey-text" n:href="Blog:default $blog->getUrl(), $activeCategory->getUrl()">{$activeCategory->getName()|firstUpper}</a>
+			{/if}
+		</div>
+		{if empty($posts)}
+            {if !empty($activeCategory)}
+				<p>Pro tuto kategorii nebyly nalezené žádné články.</p>
+            {else}
+				<p>Pro tento blog nebyly nalezené žádné články.</p>
+			{/if}
+
+		{else}
+			<div n:foreach="$posts as $post" class="col s12 m6 l4" style="margin-left: 0 !important;">
+				<div class="card hoverable">
+					<div class="card-image article-header {if empty($post->getImage())} no-image {/if}">
+						<img n:if="!empty($post->getImage())" src="{$basePath}/{$post->getImage()->getMiniNameWithPath()}">
+						<span class="card-title post-title"><a class="white-text" data-ajax="false" n:href="Blog:detail $post->getUrl()">{$post->getName()}</a></span>
+					</div>
+					<div class="card-content">
+						<p>{$post->getDescription()|truncate:150}</p>
+					</div>
+					<div class="card-action">
+						<div class="col s6 center-align">
+							{$post->getPublicDate()|date:'d.m.Y'}
+						</div>
+						<div class="col s6 center-align">
+							<a class="{$settings->getContentColor()}-text text-darken-2" data-ajax="false" n:href="Blog:detail $post->getUrl()">číst</a>
+						</div>
+						<br>
+					</div>
+				</div>
+			</div>
+		{/if}
+	</div>
+
+
+</div>

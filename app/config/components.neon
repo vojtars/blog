@@ -1,0 +1,8 @@
+services:
+    formFactory:        Vojtars\Forms\FormFactory
+    signInFormFactory:  Vojtars\Forms\SignInFormFactory
+    signUpFormFactory:  Vojtars\Forms\SignUpFormFactory
+    contactForm:        FrontModule\Components\IContactFormFactory
+    subscriberForm:     FrontModule\Components\ISubscriberFormFactory
+    searchForm:         FrontModule\Components\ISearchFormFactory
+    adminControl:       FrontModule\Components\IAdminControlFactory

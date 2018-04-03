@@ -1,0 +1,59 @@
+{block content}
+<h1 n:block=title>Registrace</h1>
+
+<div class="container-page">
+    <div class="col-md-6">
+        <h3 class="dark-grey">Registration</h3>
+        {form signUpForm}
+        <div class="form-group col-lg-12">
+            <label>Jméno</label>
+            {input name, class => 'form-control'}
+        </div>
+
+        <div class="form-group col-lg-6">
+            <label>Heslo</label>
+            {input password, class => 'form-control'}
+        </div>
+
+        <div class="form-group col-lg-6">
+            <label>Znovu Heslo</label>
+            {input password2, class => 'form-control'}
+        </div>
+
+        <div class="form-group col-lg-6">
+            <label>E-mail</label>
+            {input email, class => 'form-control'}
+        </div>
+
+        <div class="col-sm-6">
+            <input type="checkbox" class="checkbox" />Sigh up for our newsletter
+        </div>
+
+        <div class="col-sm-6">
+            <input type="checkbox" class="checkbox" />Send notifications to this email
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+        <h3 class="dark-grey">Terms and Conditions</h3>
+        <p>
+            By clicking on "Register" you agree to The Company's' Terms and Conditions
+        </p>
+        <p>
+            While rare, prices are subject to change based on exchange rate fluctuations -
+            should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
+        </p>
+        <p>
+            Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
+        </p>
+        <p>
+            Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+        </p>
+
+        <button type="submit" class="btn btn-primary" n:name="send">Register</button>
+    </div>
+    {/form}
+</div>
+
+<p><a n:href="in">Already have an account? Log in.</a></p>

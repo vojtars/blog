@@ -1,0 +1,5 @@
+services:
+	nette.latteFactory:
+		setup:
+			- addFilter(null, [@dateHelpers, 'loader'])
+			- addFilter(null, [@stringHelpers, 'loader'])

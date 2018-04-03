@@ -1,0 +1,33 @@
+<div id="modal1" class="modal modal-fixed-footer">
+    {form subscriberForm}
+        <div class="modal-content">
+            <h5>Přihlášení k odběru</h5>
+            <p>Paráda, vyber si, ze kterého blogu chceš dostávat upozornění na novinky.</p>
+            <br>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select n:name="blogs">
+                            </select>
+                            <label>Vyber blog</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input n:name="email" class="validate">
+                            <label for="email" data-success="V pořádku">Email</label>
+                        </div>
+                        <div class="col s12">
+                            <input type="checkbox" n:name="confirm" id="confirm-s">
+                            <label for="confirm-s" >Souhlasím se zpracováním dat.</label> <a class="grey-text" href="{plink About:terms}" target="_blank">Zobrazit</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button n:name="send" class="modal-action modal-close waves-effect waves-{$settings->getContentColor()} lighten-3 btn-flat">Odeslat</button>
+            <a href="#!" data-ajax="false" class="modal-action modal-close waves-effect waves-{$settings->getContentColor()} btn-flat">Zavřít</a>
+        </div>
+    {/form}
+</div>

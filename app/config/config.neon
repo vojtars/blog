@@ -1,0 +1,64 @@
+#
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# https://nette.org/security-warning
+#
+parameters:
+
+
+application:
+	mapping:
+		*: *Module\Presenters\*Presenter
+
+session:
+	expiration: 14 days
+
+latte:
+    macros:
+        - Nittro\Bridges\NittroLatte\NittroMacros
+
+tracy:
+	bar:
+		- Nextras\MailPanel\MailPanel(%tempDir%/mail-panel-latte)
+
+database:
+    dsn: 'mysql:host=%database.host%;dbname=%database.dbname%'
+    user: %database.user% # root
+    password: %database.password% # rmmot6LjgPcNr7Cyxebj
+    options:
+        lazy: yes
+
+doctrine:
+    user: %database.user%
+    password: %database.password%
+    dbname: %database.dbname%
+    metadata:
+        Vojtars\Model: %appDir%
+        App: %appDir%
+
+services:
+	nette.mailer:
+		class: Nette\Mail\IMailer
+		factory: Nextras\MailPanel\FileMailer(%tempDir%/mail-panel-mails)
+
+	router: Vojtars\RouterFactory::createRouter
+
+	- Vojtars\Helpers\DateHelpers
+	- Vojtars\Helpers\StringHelpers
+	- Vojtars\Helpers\BaseHelper
+
+	nette.latteFactory:
+		setup:
+			- addFilter(null, [@Vojtars\Helpers\DateHelpers, 'loader'])
+			- addFilter(null, [@Vojtars\Helpers\StringHelpers, 'loader'])
+
+extensions:
+    console: Kdyby\Console\DI\ConsoleExtension
+    events: Kdyby\Events\DI\EventsExtension
+    annotations: Kdyby\Annotations\DI\AnnotationsExtension
+    doctrine: Kdyby\Doctrine\DI\OrmExtension
+
+includes:
+    - components.neon
+    - models.neon
+    - services.neon
+    - admin/components.neon

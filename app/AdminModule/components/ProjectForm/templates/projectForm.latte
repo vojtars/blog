@@ -1,0 +1,46 @@
+<div class="row">
+    {form projectForm}
+        <div class="col-xs-12">
+            <div class="container-fluid">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Název projektu</label>
+                    <input class="form-control" n:name="name" placeholder="Název projektu">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Krátký popis projektu</label>
+                    <textarea class="form-control" n:name="description" placeholder="Krátky popis"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">Úvodní fotografie</label>
+                    <input n:name="image" accept=".jpg,.jpeg,.png" onchange="validateFileType()">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Název 1. Tabu</label>
+                    <input class="form-control" n:name="nameTab1" placeholder="Název tabu">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Obsah 1. Tabu</label>
+                    <textarea class="form-control summernote" n:name="tab1" placeholder="Tab1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Název 2. Tabu</label>
+                    <input class="form-control" n:name="nameTab2" placeholder="Název tabu">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Obsah 2. Tabu</label>
+                    <textarea class="form-control summernote" n:name="tab2" placeholder="Tab1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Název 3. Tabu</label>
+                    <input class="form-control" n:name="nameTab3" placeholder="Název tabu">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Obsah 3. Tabu</label>
+                    <textarea class="form-control summernote" n:name="tab3" placeholder="Tab1"></textarea>
+                </div>
+                <button n:name="create" type="submit" class="btn btn-default">Uložit</button>
+            </div>
+        </div>
+
+    {/form}
+</div>

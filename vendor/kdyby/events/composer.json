@@ -1,0 +1,64 @@
+{
+	"name": "kdyby/events",
+	"type": "library",
+	"description": "Events for Nette Framework",
+	"keywords": ["nette", "kdyby"],
+	"homepage": "http://kdyby.org",
+	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"authors": [
+		{
+			"name": "Filip Procházka",
+			"homepage": "http://filip-prochazka.com",
+			"email": "filip@prochazka.su"
+		}
+	],
+	"support": {
+		"email": "filip@prochazka.su",
+		"issues": "https://github.com/kdyby/events/issues"
+	},
+	"require": {
+		"php": "^5.6 || ^7.0",
+		"nette/di": "^2.4.8@dev",
+		"nette/utils": "^2.4.5@dev",
+		"nette/reflection": "^2.4@dev",
+		"kdyby/strict-objects": "^1.0"
+	},
+	"require-dev": {
+		"nette/application": "^2.4@dev",
+		"nette/bootstrap": "^2.4@dev",
+		"nette/caching": "^2.5@dev",
+		"nette/security": "^2.4@dev",
+		"nette/http": "^2.4.7@dev",
+		"tracy/tracy": "^2.4@dev",
+
+		"symfony/event-dispatcher": "^3.0 || ^4.0",
+
+		"nette/tester": "^2.0"
+	},
+	"minimum-stability": "dev",
+	"autoload": {
+		"psr-4": {
+			"Kdyby\\Events\\": "src/Events"
+		},
+		"classmap": [
+			"src/Events/exceptions.php"
+		],
+		"files": [
+			"src/Doctrine/compatibility.php",
+			"src/Symfony/compatibility.php"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"KdybyTests\\": "tests/KdybyTests/"
+		},
+		"classmap": [
+			"tests/KdybyTests"
+		]
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "3.1-dev"
+		}
+	}
+}

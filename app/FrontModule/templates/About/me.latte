@@ -1,0 +1,29 @@
+{block content}
+<div id="index-banner" class="parallax-container article-header valign-wrapper">
+    <div class="section no-pad-bot">
+        <div class="container valign">
+            <br><br>
+            <h1 n:block="title" class="header center white-text text-darken-2">{$settings->getMeName()}</h1>
+            <div class="row center">
+                <h5 class="header col s12 light white-text text-darken-2">{$settings->getMeDescription()}</h5>
+                <p class="post-meta"><a n:href="contact" style="color: #ffffff">Kontaktuj mě</a></p>
+            </div>
+            <div class="row center">
+                <a href="#startPosts"
+                   class="btn-floating btn-large waves-effect waves-light {$settings->getContentColor()} darken-2 head-link"><i
+                            class="fa fa-angle-double-down"></i></a>
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+    <div class="parallax"><img n:if="!empty($settings->getMeImage())"
+                src="{$basePath}/{$settings->getMeImage()->getNameWithPath()}" alt="image"></div>
+</div>
+
+<div class="container" id="startPosts">
+    <div class="col s12 m10 offset-m1 l9 offset-l1 blog-content blog-content-text">
+        {$settings->getMeContent()|noescape}
+    </div>
+
+</div>

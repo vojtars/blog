@@ -1,0 +1,5 @@
+services:
+    notificationService:    Vojtars\Services\NotificationService
+    stringService:          Vojtars\Services\StringService
+    appService:             Vojtars\Services\AppService
+    mailService:            Vojtars\Services\MailService

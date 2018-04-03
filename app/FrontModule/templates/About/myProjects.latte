@@ -1,0 +1,38 @@
+{block content}
+<div class="container">
+    <br>
+    {if empty($projects)}
+        <h4>Žádné projekty nejsou k dispozici.</h4><br><br><br><br><br>
+    {else}
+        <div class="col x-12">
+            <h5 n:block="title">Mé projekty</h5>
+        </div>
+        <div n:foreach="$projects AS $project" class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-image {if empty($project->getImage())} no-image-project {/if}">
+                        <img n:if="!empty($project->getImage())" src="{$basePath}/{$project->getImage()->getNameWithPath()}">
+                        <span class="card-title post-title">{$project->getName()}</span>
+                    </div>
+                    <div class="card-content">
+                        {$project->getDescription()|noescape}
+                    </div>
+                    <div class="card-tabs">
+                        <ul class="tabs tabs-fixed-width">
+                            <li n:if="$project->isShowTab1()" class="tab"><a href="#tab1{$project->getId()}" data-ajax="false" class="active">{$project->getNameTab1()}</a></li>
+                            <li n:if="$project->isShowTab2()" class="tab"><a href="#tab2{$project->getId()}" data-ajax="false">{$project->getNameTab2()}</a></li>
+                            <li n:if="$project->isShowTab3()" class="tab"><a href="#tab3{$project->getId()}" data-ajax="false">{$project->getNameTab3()}</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-content grey lighten-4">
+                        <div n:if="$project->isShowTab1()" id="tab1{$project->getId()}" class="blog-content-text">{$project->getTab1()|noescape}</div>
+                        <div n:if="$project->isShowTab2()" id="tab2{$project->getId()}" class="blog-content-text">{$project->getTab2()|noescape}</div>
+                        <div n:if="$project->isShowTab3()" id="tab3{$project->getId()}" class="blog-content-text">{$project->getTab3()|noescape}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/if}
+
+</div>
+

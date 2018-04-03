@@ -1,0 +1,14 @@
+{block scripts}
+{/block}
+{block content}
+<div class="row">
+    <div class="container-fluid">
+        <h4 n:snippet="btns">
+            Seznam projektů
+            <a n:href="changeShowProjects!" class="ajax btn btn-sm {if $settings->isShowProjects()} btn-danger {else} btn-success {/if}">
+                {if $settings->isShowProjects()} Skrýt {else} Zobrazit {/if}
+            </a>
+        </h4>
+        {control projectGrid}
+    </div>
+</div>

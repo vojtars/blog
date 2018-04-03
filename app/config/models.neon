@@ -1,0 +1,23 @@
+services:
+    categoryRepository: Vojtars\Model\CategoryRepository
+    categoryManager:  	Vojtars\Model\CategoryManager
+    userRepository:     Vojtars\Model\UserRepository
+    userManager:        Vojtars\Model\UserManager
+    blogRepository:     Vojtars\Model\BlogRepository
+    blogManager:        Vojtars\Model\BlogManager
+    imageRepository:    Vojtars\Model\ImageRepository
+    imageManager:       Vojtars\Model\ImageManager
+    postManager:        Vojtars\Model\PostManager
+    postRepository:     Vojtars\Model\PostRepository
+    galleryRepository:  Vojtars\Model\GalleryRepository
+    galleryManager:     Vojtars\Model\GalleryManager
+    settingsRepository: Vojtars\Model\SettingsRepository
+    projectRepository:  Vojtars\Model\ProjectRepository
+    projectManager:     Vojtars\Model\ProjectManager
+    subscriberRepository:   Vojtars\Model\SubscriberRepository
+    subscriberManager:  Vojtars\Model\SubscriberManager
+    homepageRepository: Vojtars\Model\HomepageRepository
+    homepageManager:    Vojtars\Model\HomepageManager
+    fileRepository:     Vojtars\Model\FileRepository
+    fileManager:        Vojtars\Model\FileManager
+    postHasFileRepository: Vojtars\Model\PostHasFileRepository

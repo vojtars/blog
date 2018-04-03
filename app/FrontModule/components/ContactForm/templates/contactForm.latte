@@ -1,0 +1,29 @@
+{form contactForm class => "col s12"}
+    <div class="row">
+        <div class="input-field col s6">
+            <input n:name="name" class="validate">
+            <label for="first_name">Jméno</label>
+        </div>
+        <div class="input-field col s6">
+            <input n:name="surname" type="text" class="validate">
+            <label for="last_name">Příjmení</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input n:name="email" class="validate">
+            <label for="email">Email</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <textarea n:name="message" class="materialize-textarea"></textarea>
+            <label for="textarea1">Dotaz</label>
+        </div>
+    </div>
+    <button class="btn waves-effect waves-light {$settings->getContentColor()} darken-2" type="submit" n:name="send">Odeslat
+        <i class="material-icons right">send</i>
+    </button>
+    <br>
+    <br>
+{/form}

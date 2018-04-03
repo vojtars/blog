@@ -1,0 +1,49 @@
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="{$basePath}/js/bootstrap.min.js"></script>
+
+<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+<script src="{$basePath}/js/nette.ajax.js"></script>
+
+<!-- Use this tiny js for that pretty checkboxes (https://github.com/paveljanda/happy) -->
+<script src="{$basePath}/js/happy.min.js"></script>
+<script src="{$basePath}/js/bootstrap-datepicker.min.js"></script>
+<script src="https://johnny.github.io/jquery-sortable/js/jquery-sortable.js"></script>
+<script src="{$basePath}/js/datagrid.min.js"></script>
+
+<!-- It is recommended to include this JS file with just a few bits. It refreshes URL on non ajax request -->
+<script src="{$basePath}/js/datagrid-instant-url-refresh.min.js"></script>
+
+<!-- Use this little extension for ajax spinners -->
+{* <script src="{$basePath}/js/datagrid-spinners.min.js"></script> *}
+
+<!-- Include bootstrap-select.js when using FilterMultiSelect (silviomoreto.github.io/bootstrap-select) -->
+<script src="{$basePath}/js/bootstrap-select.min.js"></script>
+
+<script src="{$basePath}/js/dropzone.js"></script>
+<script src="{$basePath}/js/summernote.js"></script>
+<script src="{$basePath}/js/summernote-ext-highlight.min.js"></script>
+<script src="{$basePath}/js/summernote-ext-emoji-ajax.js"></script>
+<script src="{$basePath}/node_modules/flatpickr/dist/flatpickr.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
+
+<script>
+    $(function () {
+        $.nette.init();
+    });
+
+    var count = document.getElementsByClassName('datetime-picker').length;
+
+    if (count > 0) {
+        flatpickr('.datetime-picker', {
+            enableTime: true,
+            altInput: true,
+            altFormat: "d.m.Y H:i",
+            dateFormat: "Y-m-d H:i",
+            time_24hr: true,
+            wrap: true
+        });
+    }
+</script>

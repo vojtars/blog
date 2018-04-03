@@ -1,0 +1,20 @@
+<!-- Modal Structure -->
+<div id="searchModal" class="modal bottom-sheet">
+    {form searchForm data-ajax => 'false'}
+        <div class="modal-content">
+            <h5>Vyhledávání</h5>
+            <div class="row">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input n:name="query" id="search-input-header">
+                        <label for="search-input-header">Článek</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button n:name="send" class="waves-effect waves-{$settings->getContentColor()} btn-flat" data-ajax="false">Hledej</button>
+            <a href="#!" class="modal-action modal-close waves-effect waves-{$settings->getContentColor()} btn-flat" data-ajax="false">Zavřít</a>
+        </div>
+    {/form}
+</div>

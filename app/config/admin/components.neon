@@ -1,0 +1,22 @@
+services:
+    userGrid:   AdminModule\Components\IUserGridFactory
+    userForm:   AdminModule\Components\IUserFormFactory
+    postGrid:   AdminModule\Components\IPostGridFactory
+    postForm:   AdminModule\Components\IPostFormFactory
+    blogGrid:   AdminModule\Components\IBlogGridFactory
+    blogForm:   AdminModule\Components\IBlogFormFactory
+    galleryGrid:    AdminModule\Components\IGalleryGridFactory
+    galleryForm:    AdminModule\Components\IGalleryFormFactory
+    projectGrid:    AdminModule\Components\IProjectGridFactory
+    projectForm:    AdminModule\Components\IProjectFormFactory
+    homepageGrid:   AdminModule\Components\IHomepageGridFactory
+    homepageForm:   AdminModule\Components\IHomepageFormFactory
+    aboutMeForm:    AdminModule\Components\IAboutMeFormFactory
+    settingsControl:    AdminModule\Components\ISettingsControlFactory
+    marketingControl:   AdminModule\Components\IMarketingControlFactory
+    dashboardControl:   AdminModule\Components\IDashboardControlFactory
+    categoryForm:       AdminModule\Components\ICategoryFormFactory
+    contactControl:     AdminModule\Components\IContactControlFactory
+    filesGrid:          AdminModule\Components\IFilesGridFactory
+    subscriberGrid:     AdminModule\Components\ISubscriberGridFactory
+    termsForm:          AdminModule\Components\ITermsFormFactory
